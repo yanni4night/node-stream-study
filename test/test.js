@@ -12,6 +12,7 @@
 'use strict';
 import test from 'ava';
 import Alphabet from '../alphabet-readable-stream';
+import ArrayWriter from '../arraywriter-writable-stream';
 
 test('alphabet readable stream', async t => {
     const wa = new Promise((resolve, reject) => {
@@ -25,4 +26,20 @@ test('alphabet readable stream', async t => {
         });
     });
     t.is(await wa, 'abcdefghijklmnopqrstuvwxyz', 'equals');
+});
+
+test('arraywriter writable stream', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const arr = [];
+        const s = new ArrayWriter({
+            array: arr
+        });
+        s.on('finish', () => {
+            resolve(arr.join(''));
+        });
+        s.write('a');
+        s.write('b');
+        s.end('c');
+    });
+    t.is(await wa, 'abc', 'equals');
 });
