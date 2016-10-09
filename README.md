@@ -1,4 +1,5 @@
 # node-stream-study
+[![Build Status][travis-image]][travis-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
 Study [Node.js stream](https://nodejs.org/api/stream.html).
 
@@ -92,3 +93,9 @@ new MyReadable({objectMode: true});
 ```
 
 E.g. [object-readable-stream.js](object-readable-stream.js)
+
+
+[travis-url]: https://travis-ci.org/yanni4night/node-stream-study
+[travis-image]: http://img.shields.io/travis/yanni4night/node-stream-study.svg
+[david-dm-dev-url]:https://david-dm.org/yanni4night/node-stream-study#type=dev
+[david-dm-dev-image]:https://david-dm.org/yanni4night/node-stream-study/dev-status.svg
