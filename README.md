@@ -35,7 +35,7 @@ If there is nothing to read, just push a _null_:
 this.push(null);
 ```
 
-E.g. <alphabet-readable-stream.js>
+E.g. [alphabet-readable-stream.js](alphabet-readable-stream.js)
 
 ### Writable stream
 
@@ -58,7 +58,7 @@ Call _callback()_ function to represent a complete. Passing an error object is o
 
 _\_writev()_ acts as a bulk of _\_writev()_ somehow.
 
-E.g. <arraywriter-writable-stream.js>
+E.g. [arraywriter-writable-stream.js](arraywriter-writable-stream.js)
 
 ### Duplex stream
 
@@ -89,6 +89,6 @@ In the examples above, we read, write or transform strings and buffers. Actually
 
 ```js
 new MyReadable({objectMode: true});
-``
+```
 
-E.g. <object-readable-stream.js>
+E.g. [object-readable-stream.js](object-readable-stream.js)

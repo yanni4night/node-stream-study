@@ -6,7 +6,7 @@
   "devDependencies": {
     "ava": "^0.16.0"
   },
-  "description": "Study [node stream](https://nodejs.org/api/stream.html).",
+  "description": "Study Node.js stream",
   "version": "0.1.0",
   "main": "package.json",
   "directories": {
@@ -14,5 +14,17 @@
   },
   "dependencies": {},
   "author": "yanni4night@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yanni4night/node-stream-study.git"
+  },
+  "keywords": [
+    "study",
+    "stream"
+  ],
+  "bugs": {
+    "url": "https://github.com/yanni4night/node-stream-study/issues"
+  },
+  "homepage": "https://github.com/yanni4night/node-stream-study"
 }
