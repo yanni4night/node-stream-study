@@ -13,6 +13,7 @@
 import test from 'ava';
 import Alphabet from '../alphabet-readable-stream';
 import ArrayWriter from '../arraywriter-writable-stream';
+import ObjectReader from '../object-readable-stream';
 
 test('alphabet readable stream', async t => {
     const wa = new Promise((resolve, reject) => {
@@ -42,4 +43,22 @@ test('arraywriter writable stream', async t => {
         s.end('c');
     });
     t.is(await wa, 'abc', 'equals');
+});
+
+test('object readable stream', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const s = new ObjectReader();
+        let result = [];
+        s.on('data', data => {
+            result.push(data);
+        });
+        s.on('end', () => {
+            resolve(result);
+        });
+    });
+    t.deepEqual(await wa, [{
+        idx: 1
+    }, {
+        idx: 2
+    }], 'equals');
 });
