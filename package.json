@@ -1,0 +1,18 @@
+{
+  "name": "node-stream-study",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0"
+  },
+  "description": "Study [node stream](https://nodejs.org/api/stream.html).",
+  "version": "0.1.0",
+  "main": "package.json",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "author": "yanni4night@gmail.com",
+  "license": "MIT"
+}
