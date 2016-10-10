@@ -16,6 +16,7 @@ import ArrayWriter from '../arraywriter-writable-stream';
 import ObjectReader from '../object-readable-stream';
 import ObjectWriter from '../object-writable-stream';
 import ReverseTransform from '../reverse-transform-stream';
+import through2 from 'through2';
 
 test('alphabet readable stream', async t => {
     const wa = new Promise((resolve, reject) => {
@@ -28,7 +29,7 @@ test('alphabet readable stream', async t => {
             resolve(result);
         });
     });
-    t.is(await wa, 'abcdefghijklmnopqrstuvwxyz', 'equals');
+    t.is(await wa, 'abcdefghijklmnopqrstuvwxyz');
 });
 
 test('arraywriter writable stream', async t => {
@@ -44,7 +45,7 @@ test('arraywriter writable stream', async t => {
         s.write('b');
         s.end('c');
     });
-    t.is(await wa, 'abc', 'equals');
+    t.is(await wa, 'abc');
 });
 
 test('alphabet->arraywriter', async t => {
@@ -59,7 +60,7 @@ test('alphabet->arraywriter', async t => {
 
         new Alphabet().pipe(s);
     });
-    t.is(await wa, 'abcdefghijklmnopqrstuvwxyz', 'equals');
+    t.is(await wa, 'abcdefghijklmnopqrstuvwxyz');
 });
 
 test('object readable stream', async t => {
@@ -77,7 +78,7 @@ test('object readable stream', async t => {
         idx: 1
     }, {
         idx: 2
-    }], 'equals');
+    }]);
 });
 
 test('object writable stream', async t => {
@@ -100,7 +101,7 @@ test('object writable stream', async t => {
         idx: 1
     }, {
         idx: 2
-    }], 'equals');
+    }]);
 });
 
 test('ObjectReader->ObjectWriter', async t => {
@@ -133,5 +134,21 @@ test('revert transform stream', async t => {
         });
         s.end('abc');
     });
-    t.is(await wa, 'cba\n', 'equals');
+    t.is(await wa, 'cba\n');
+});
+
+test('through2', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const arr = [];
+        const s = through2((chunk, encoding, callback) => {
+            arr.push(chunk.toString());
+            callback();
+        });
+        s.on('finish', () => {
+            resolve(arr);
+        });
+        s.write('1');
+        s.end('2');
+    });
+    t.deepEqual(await wa, ['1', '2']);
 });

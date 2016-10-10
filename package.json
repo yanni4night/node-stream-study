@@ -12,7 +12,9 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "through2": "^2.0.1"
+  },
   "author": "yanni4night@gmail.com",
   "license": "MIT",
   "repository": {

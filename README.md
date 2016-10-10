@@ -105,6 +105,9 @@ new MyReadable({objectMode: true});
 E.g. [object-readable-stream.js](object-readable-stream.js)
 E.g. [object-writable-stream.js](object-writable-stream.js)
 
+## through2
+
+To simplify the procedure of creating a duplex stream, [through2](http://npmjs.org/through2) is highly recommended.
 
 [travis-url]: https://travis-ci.org/yanni4night/node-stream-study
 [travis-image]: http://img.shields.io/travis/yanni4night/node-stream-study.svg
