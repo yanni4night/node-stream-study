@@ -1,6 +1,6 @@
 /**
   * Copyright (C) 2016 yanni4night.com
-  * revert-transform-stream.js
+  * reverse-transform-stream.js
   *
   * changelog
   * 2016-10-09[21:58:05]:revised
@@ -13,13 +13,13 @@
 
 const Transform = require('stream').Transform;
 
-class RevertTransform extends Transform {
+class ReverseTransform extends Transform {
     constructor(options) {
         super(options);
     }
     _transform(chunk, encoding, callback) {
-        callback(null, chunk.reverse());
+        callback(null, chunk.toString().split('').reverse().join(''));
     }
 }
 
-module.exports = RevertTransform;
+module.exports = ReverseTransform;

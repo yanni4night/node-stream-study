@@ -14,7 +14,7 @@ import test from 'ava';
 import Alphabet from '../alphabet-readable-stream';
 import ArrayWriter from '../arraywriter-writable-stream';
 import ObjectReader from '../object-readable-stream';
-import RevertTransform from '../revert-transform-stream';
+import ReverseTransform from '../reverse-transform-stream';
 
 test('alphabet readable stream', async t => {
     const wa = new Promise((resolve, reject) => {
@@ -46,6 +46,21 @@ test('arraywriter writable stream', async t => {
     t.is(await wa, 'abc', 'equals');
 });
 
+test('alphabet->arraywriter', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const arr = [];
+        const s = new ArrayWriter({
+            array: arr
+        });
+        s.on('finish', () => {
+            resolve(arr.join(''));
+        });
+
+        new Alphabet().pipe(s);
+    });
+    t.is(await wa, 'abcdefghijklmnopqrstuvwxyz', 'equals');
+});
+
 test('object readable stream', async t => {
     const wa = new Promise((resolve, reject) => {
         const s = new ObjectReader();
@@ -66,7 +81,7 @@ test('object readable stream', async t => {
 
 test('revert transform stream', async t => {
     const wa = new Promise((resolve, reject) => {
-        const s = new RevertTransform();
+        const s = new ReverseTransform();
         let result = '';
         s.on('data', data => {
             result += data;

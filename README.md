@@ -83,6 +83,7 @@ class MyTransform extends Transform {
 
 _\_transform()_ is similar to _\_write()_.
 
+E.g. [reverse-transform-stream.js](reverse-transform-stream)
 
 ## Object mode stream
 
