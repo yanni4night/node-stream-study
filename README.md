@@ -94,6 +94,7 @@ new MyReadable({objectMode: true});
 ```
 
 E.g. [object-readable-stream.js](object-readable-stream.js)
+E.g. [object-writable-stream.js](object-writable-stream.js)
 
 
 [travis-url]: https://travis-ci.org/yanni4night/node-stream-study

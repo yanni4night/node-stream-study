@@ -14,6 +14,7 @@ import test from 'ava';
 import Alphabet from '../alphabet-readable-stream';
 import ArrayWriter from '../arraywriter-writable-stream';
 import ObjectReader from '../object-readable-stream';
+import ObjectWriter from '../object-writable-stream';
 import ReverseTransform from '../reverse-transform-stream';
 
 test('alphabet readable stream', async t => {
@@ -70,6 +71,29 @@ test('object readable stream', async t => {
         });
         s.on('end', () => {
             resolve(result);
+        });
+    });
+    t.deepEqual(await wa, [{
+        idx: 1
+    }, {
+        idx: 2
+    }], 'equals');
+});
+
+test('object writable stream', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const result = [];
+        const s = new ObjectWriter({
+            array: result
+        });
+        s.on('finish', () => {
+            resolve(result);
+        });
+        s.write({
+            idx: 1
+        });
+        s.end({
+            idx: 2
         });
     });
     t.deepEqual(await wa, [{
