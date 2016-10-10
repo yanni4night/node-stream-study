@@ -103,6 +103,24 @@ test('object writable stream', async t => {
     }], 'equals');
 });
 
+test('ObjectReader->ObjectWriter', async t => {
+    const wa = new Promise((resolve, reject) => {
+        const result = [];
+        const s = new ObjectWriter({
+            array: result
+        });
+        s.on('finish', () => {
+            resolve(result);
+        });
+        new ObjectReader().pipe(s);
+    });
+    t.deepEqual(await wa, [{
+        idx: 1
+    }, {
+        idx: 2
+    }], 'equals');
+});
+
 test('revert transform stream', async t => {
     const wa = new Promise((resolve, reject) => {
         const s = new ReverseTransform();
@@ -115,5 +133,5 @@ test('revert transform stream', async t => {
         });
         s.end('abc');
     });
-    t.is(await wa, 'cba', 'equals');
+    t.is(await wa, 'cba\n', 'equals');
 });

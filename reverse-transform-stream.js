@@ -20,6 +20,10 @@ class ReverseTransform extends Transform {
     _transform(chunk, encoding, callback) {
         callback(null, chunk.toString().split('').reverse().join(''));
     }
+    _flush(cb) {
+        this.push('\n');
+        cb();
+    }
 }
 
 module.exports = ReverseTransform;
